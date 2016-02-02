@@ -20,43 +20,49 @@
 #import "CBannerLoopCell.h"
 #import "CTopModel.h"
 @interface CBannerLoopCell() {
-UIImageView *imgView;
+    UIImageView *imgView;
 }
 @end
 
 @implementation CBannerLoopCell
 
 - (id)initWith:(id)model withScrollViewFrame:(CGRect)rect{
-self = [super initWith:model withScrollViewFrame:rect];
-imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height)];
-imgView.contentMode = UIViewContentModeScaleAspectFill;
-imgView.clipsToBounds = YES;
-[self addSubview:imgView];
-[self reloadWith:model];
-return self;
+    self = [super initWith:model withScrollViewFrame:rect];
+    imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0,
+                                                            0,
+                                                            rect.size.width,
+                                                            rect.size.height)];
+    imgView.contentMode = UIViewContentModeScaleAspectFill;
+    imgView.clipsToBounds = YES;
+    [self addSubview:imgView];
+    [self reloadWith:model];
+    return self;
 }
 
 - (void)reloadWith:(id)model{
-[super reloadWith:model];
-NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", ((CTopModel *)model).imageUrl]];
-[imgView setImageWithURL:url placeholderImage:nil];
+    [super reloadWith:model];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", ((CTopModel *)model).imageUrl]];
+    [imgView setImageWithURL:url placeholderImage:nil];
 }
 
 @end
 ```
 - 7.创建LoopScrollView并addSubView
 ```objective-c
-_topView = [[CLoopScrollView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenWidth*0.5) scrollDirection:LoopScrollViewScrollDirectionLandscape models:_mainModel.topArray ofCellClass:[CBannerLoopCell class]];
+_topView = [[CLoopScrollView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenWidth*0.5)
+                                  scrollDirection:LoopScrollViewScrollDirectionLandscape 
+                                           models:_mainModel.topArray
+                                      ofCellClass:[CBannerLoopCell class]];
 [_topView setRollingDelayTime:4.0];
 [_topView setSquare:0];
 [header addSubview:_topView];
-
 __block UILabel *weekTopPage = _topPage;
 [_topView setScrollBlock:^(CLoopScrollView *loopScrollView, NSInteger index, id model) {
-NSLog(@"%d/%lu", (int)index+1, (unsigned long)[loopScrollView.models count]);
+    NSLog(@"%d/%lu", (int)index+1, (unsigned long)[loopScrollView.models count]);
 }];
 __block CViewController *weekSelf = self;
 [_topView setSelectBlock:^(CLoopScrollView *loopScrollView, CLoopCell *view, NSInteger index, id model) {
+    [self doSomething]
 }];
 ```
 
