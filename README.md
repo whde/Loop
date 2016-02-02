@@ -13,6 +13,7 @@
 #import <Loop/CLoopScrollView.h>
 #import <Loop/CLoopCell.h>
 ```
+
 - 5.创建一个继承于CLoopCell的Cell
 - 6.实现CLoopCell中的两个方法
 例如简单的Banner:
@@ -62,7 +63,7 @@ __block UILabel *weekTopPage = _topPage;
 }];
 __block CViewController *weekSelf = self;
 [_topView setSelectBlock:^(CLoopScrollView *loopScrollView, CLoopCell *view, NSInteger index, id model) {
-    [self doSomething]
+    [weekSelf doSomething]
 }];
 ```
 
