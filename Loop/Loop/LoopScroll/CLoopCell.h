@@ -5,7 +5,7 @@
 //  Created by whde on 16/1/11.
 //  Copyright © 2016年 whde. All rights reserved.
 //
-
+// GitHub:https://github.com/whde/Loop
 #import <UIKit/UIKit.h>
 
 @interface CLoopCell : UIControl

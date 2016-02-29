@@ -104,6 +104,9 @@
 
 #pragma mark - Custom Method
 - (void)refreshScrollView {
+    if (_models.count<=0) {
+        return;
+    }
     NSArray *curModels = [self getDisplayModelsWithPageIndex:curPage];
     
     for (NSInteger i = 0; i < 3; i++){
@@ -211,7 +214,7 @@
 #pragma mark Rolling
 
 - (void)startRolling {
-    if (![_models isKindOfClass:[NSArray class]] || _models.count == 1) {
+    if (![_models isKindOfClass:[NSArray class]] || _models.count <= 1) {
         return;
     }
     

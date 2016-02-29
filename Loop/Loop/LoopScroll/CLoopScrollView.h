@@ -4,7 +4,7 @@
 //  Created by Whde on 15-11-27.
 //  Copyright (c) 2013年 Whde. All rights reserved.
 //
-
+// GitHub:https://github.com/whde/Loop
 #import <UIKit/UIKit.h>
 @class CLoopCell;
 typedef NS_ENUM(NSInteger, LoopScrollViewScrollDirection){
