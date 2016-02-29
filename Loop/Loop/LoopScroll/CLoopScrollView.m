@@ -25,7 +25,17 @@
     self.delegate = nil;
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(rollingScrollAction) object:nil];
 }
-
+- (void)setFrame:(CGRect)frame {
+    for (UIView *loopItem in [self subviews]) {
+        if ([loopItem isKindOfClass:[CLoopCell class]]) {
+            CGRect rec = loopItem.frame;
+            rec.size.width = frame.size.width;
+            rec.size.height = frame.size.height;
+            loopItem.frame = rec;
+        }
+    }
+    [super setFrame:frame];
+}
 - (id)initWithFrame:(CGRect)frame scrollDirection:(LoopScrollViewScrollDirection)direction models:(NSArray *)models ofCellClass:(Class)cellClass{
     if (![cellClass isSubclassOfClass:[CLoopCell class]]) {
 #if DEBUG
