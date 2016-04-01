@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Loop by whde</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Loop</h1>
+      <h2 class="project-tagline">Banner无限滚动视图</h2>
+      <a href="https://github.com/whde/Loop" class="btn">View on GitHub</a>
+      <a href="https://github.com/whde/Loop/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/whde/Loop/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h2>
+<a id="loop" class="anchor" href="#loop" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Loop</h2>
+
+<p>无限滚动视图, 适用于Banner的滚动</p>
+
+<h2>
+<a id="使用说明" class="anchor" href="#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>使用说明:</h2>
+
+<ul>
+<li>1.下载项目,打开项目</li>
+<li>2.command+B打包Loop.Framework</li>
+<li>3.将Loop.Framework导入到自己的项目中
+<p align="center">
+<img src="https://raw.githubusercontent.com/whde/Alert/master/Alert/CA246576-E925-4195-B0D6-072E7FC1F3D6.jpeg">
+</p>
+</li>
+<li>4.导入头文件</li>
+</ul>
+
+<div class="highlight highlight-source-objc"><pre>#<span class="pl-k">import</span> <span class="pl-s"><span class="pl-pds">&lt;</span>Loop/CLoopScrollView.h<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">import</span> <span class="pl-s"><span class="pl-pds">&lt;</span>Loop/CLoopCell.h<span class="pl-pds">&gt;</span></span></pre></div>
+
+<ul>
+<li>5.创建一个继承于CLoopCell的Cell</li>
+<li>6.实现CLoopCell中的两个方法
+例如简单的Banner:</li>
+</ul>
+
+<div class="highlight highlight-source-objc"><pre>#<span class="pl-k">import</span> <span class="pl-s"><span class="pl-pds">"</span>CBannerLoopCell.h<span class="pl-pds">"</span></span>
+#<span class="pl-k">import</span> <span class="pl-s"><span class="pl-pds">"</span>CTopModel.h<span class="pl-pds">"</span></span>
+<span class="pl-k">@interface</span> <span class="pl-en">CBannerLoopCell</span>() {
+    UIImageView *imgView;
+}
+<span class="pl-k">@end</span>
+
+<span class="pl-k">@implementation</span> <span class="pl-en">CBannerLoopCell</span>
+
+- (<span class="pl-k">id</span>)<span class="pl-en">initWith</span><span class="pl-en">:</span>(<span class="pl-k">id</span>)<span class="pl-smi">model</span> <span class="pl-en">withScrollViewFrame</span><span class="pl-en">:</span>(<span class="pl-c1">CGRect</span>)<span class="pl-smi">rect</span>{
+    self = [<span class="pl-v">super</span> <span class="pl-c1">initWith:</span>model <span class="pl-c1">withScrollViewFrame:</span>rect];
+    imgView = [[UIImageView <span class="pl-c1">alloc</span>] <span class="pl-c1">initWithFrame:</span><span class="pl-c1">CGRectMake</span>(<span class="pl-c1">0</span>,
+                                                            <span class="pl-c1">0</span>,
+                                                            rect.size.width,
+                                                            rect.size.height)];
+    imgView.<span class="pl-smi">contentMode</span> = UIViewContentModeScaleAspectFill;
+    imgView.<span class="pl-smi">clipsToBounds</span> = <span class="pl-c1">YES</span>;
+    [<span class="pl-v">self</span> <span class="pl-c1">addSubview:</span>imgView];
+    [<span class="pl-v">self</span> <span class="pl-c1">reloadWith:</span>model];
+    <span class="pl-k">return</span> self;
+}
+
+- (<span class="pl-k">void</span>)<span class="pl-en">reloadWith</span><span class="pl-en">:</span>(<span class="pl-k">id</span>)<span class="pl-smi">model</span>{
+    [<span class="pl-v">super</span> <span class="pl-c1">reloadWith:</span>model];
+    <span class="pl-c1">NSURL</span> *url = [<span class="pl-c1">NSURL</span> <span class="pl-c1">URLWithString:</span>[<span class="pl-c1">NSString</span> <span class="pl-c1">stringWithFormat:</span><span class="pl-s"><span class="pl-pds">@"</span><span class="pl-c1">%@</span><span class="pl-pds">"</span></span>, ((CTopModel *)model).imageUrl]];
+    [imgView <span class="pl-c1">setImageWithURL:</span>url <span class="pl-c1">placeholderImage:</span><span class="pl-c1">nil</span>];
+}
+
+<span class="pl-k">@end</span></pre></div>
+
+<ul>
+<li>7.创建LoopScrollView并addSubView</li>
+</ul>
+
+<div class="highlight highlight-source-objc"><pre>_topView = [[CLoopScrollView <span class="pl-c1">alloc</span>] <span class="pl-c1">initWithFrame:</span><span class="pl-c1">CGRectMake</span>(<span class="pl-c1">0</span>, <span class="pl-c1">0</span>, ScreenWidth, ScreenWidth*<span class="pl-c1">0.5</span>)
+                                  <span class="pl-c1">scrollDirection:</span>LoopScrollViewScrollDirectionLandscape 
+                                           <span class="pl-c1">models:</span>_mainModel.topArray
+                                      <span class="pl-c1">ofCellClass:</span>[CBannerLoopCell <span class="pl-c1">class</span>]];
+[_topView <span class="pl-c1">setRollingDelayTime:</span><span class="pl-c1">4.0</span>];
+[_topView <span class="pl-c1">setSquare:</span><span class="pl-c1">0</span>];
+[header <span class="pl-c1">addSubview:</span>_topView];
+__block UILabel *weekTopPage = _topPage;
+[_topView <span class="pl-c1">setScrollBlock:</span>^(CLoopScrollView *loopScrollView, <span class="pl-k">NSInteger</span> <span class="pl-c1">index</span>, <span class="pl-k">id</span> model) {
+    <span class="pl-c1">NSLog</span>(<span class="pl-s"><span class="pl-pds">@"</span><span class="pl-c1">%d</span>/<span class="pl-c1">%lu</span><span class="pl-pds">"</span></span>, (<span class="pl-k">int</span>)<span class="pl-c1">index</span>+<span class="pl-c1">1</span>, (<span class="pl-k">unsigned</span> <span class="pl-k">long</span>)[loopScrollView.models <span class="pl-c1">count</span>]);
+}];
+__block CViewController *weekSelf = self;
+[_topView <span class="pl-c1">setSelectBlock:</span>^(CLoopScrollView *loopScrollView, CLoopCell *view, <span class="pl-k">NSInteger</span> <span class="pl-c1">index</span>, <span class="pl-k">id</span> model) {
+    [weekSelf <span class="pl-c1">doSomething</span>]
+}];</pre></div>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/whde/Loop">Loop</a> is maintained by <a href="https://github.com/whde">whde</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
