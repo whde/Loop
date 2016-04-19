@@ -14,7 +14,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		8Po1zOnIHZbRxwR2cQ7GOwkL+mg=
+		vPSlgQq3UJdrJ+6i/x4UxPxGBLs=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -24,17 +24,38 @@
 	<key>files2</key>
 	<dict>
 		<key>Headers/CLoopCell.h</key>
-		<data>
-		TAy9POWRjr2obYoWXu+od5NeXm8=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			TAy9POWRjr2obYoWXu+od5NeXm8=
+			</data>
+			<key>hash2</key>
+			<data>
+			Dm1Fugh+aL4l6ISOTIr5gvosvun4U/2oyPQFR+GnqZQ=
+			</data>
+		</dict>
 		<key>Headers/CLoopScrollView.h</key>
-		<data>
-		EO8JeOMu/a3QKzHHu12L8cXLGlQ=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			EO8JeOMu/a3QKzHHu12L8cXLGlQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			zs009IKDQR59malmhOJPItI6VUBqZ8CQ6sdK+K3D8tI=
+			</data>
+		</dict>
 		<key>Modules/module.modulemap</key>
-		<data>
-		AAf8WnJVy/GAFu/IWBMLc2d1iPQ=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			AAf8WnJVy/GAFu/IWBMLc2d1iPQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			m4pkLInqZNkeglCFQKby+xrICq8bjX1wWKZJWvvot4Q=
+			</data>
+		</dict>
 	</dict>
 	<key>rules</key>
 	<dict>
