@@ -1,6 +1,0 @@
-framework module Loop {
-  umbrella header "Loop.h"
-
-  export *
-  module * { export * }
-}

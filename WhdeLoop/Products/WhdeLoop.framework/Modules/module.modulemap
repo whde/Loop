@@ -1,0 +1,6 @@
+framework module WhdeLoop {
+  umbrella header "WhdeLoop.h"
+
+  export *
+  module * { export * }
+}
