@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name          = "WhdeLoop"
-s.version       = "1.0.3"
+s.version       = "1.0.0"
 s.summary       = "iOS Banner."
 s.homepage      = "https://github.com/whde/Loop"
 s.license       = 'MIT'
